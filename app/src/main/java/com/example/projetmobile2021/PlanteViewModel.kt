@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 class PlanteViewModel(application: Application) : AndroidViewModel(application) {
 
     val dao = PlanteBD.getDatabase(application).MyDAO()
-    val pays : List<Plante> = dao.getAllPlantes()
+    //val listPlantes : List<Plante> = dao.getAllPlantes()
     val TAG = "AddPaysViewModel"
 
     fun addPlante(nom : String, nomLatin : String, ){
@@ -21,6 +21,16 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                 )
             )
         }.start()
+
+    }
+
+    fun getPlantes(): List<Plante>{
+        var listePlante : List<Plante> = listOf()
+        Thread{
+            listePlante = dao.getAllPlantes()
+
+        }.start()
+        return listePlante
 
     }
 }
