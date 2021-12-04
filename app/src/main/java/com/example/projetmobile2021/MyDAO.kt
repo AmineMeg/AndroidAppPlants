@@ -8,10 +8,10 @@ interface MyDAO {
     fun getAllPlantes():List<Plante>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(pl : Plante)
+     fun insert(pl : Plante)
 
     @Query("DELETE FROM plante_tab")
-    suspend fun deleteAll()
+     fun deleteAll()
 
     @Query("Select * FROM plante_tab where id = :idPlante")
     fun getPlante(idPlante: Int)
