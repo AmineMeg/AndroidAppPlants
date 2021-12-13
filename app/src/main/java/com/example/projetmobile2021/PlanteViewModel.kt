@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import java.util.*
 
 class PlanteViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -13,11 +14,14 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
     //val listPlantes : List<Plante> = dao.getAllPlantes()
     val TAG = "AddPaysViewModel"
 
-    fun addPlante(nom : String, nomLatin : String, ){
+    fun addPlante(nom : String, nomLatin : String,freq : List<Int>){
         Thread{
             dao.insert(
                 Plante(
-                    id = 0, nom = nom.trim(),nomLatin = nomLatin.trim()
+                    id = 0, nom = nom.trim(),nomLatin = nomLatin.trim(),
+                    dateFrequence = arrayListOf(Date(2021,11,12)),
+                    dernierArosage = Date(2021,11,12),
+                    frequence = freq
                 )
             )
         }.start()

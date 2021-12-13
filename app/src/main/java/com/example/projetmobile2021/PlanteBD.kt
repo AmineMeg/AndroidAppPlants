@@ -1,11 +1,10 @@
 package com.example.projetmobile2021
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
 
 @Database(entities = [Plante::class],version = 1)
+@TypeConverters(Converters::class)
 abstract class PlanteBD : RoomDatabase() {
 
     abstract fun MyDAO(): MyDAO

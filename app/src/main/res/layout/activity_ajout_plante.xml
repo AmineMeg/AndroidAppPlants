@@ -4,92 +4,122 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#c8d6e5"
     tools:context=".AjoutPlanteActivity">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TableRow
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:background="#1dd1a1">
+            android:layout_height="wrap_content"
+            android:text="TextView" />
 
-        </TableRow>
+        <EditText
+            android:id="@+id/nom"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
 
-        <TableRow
+        <EditText
+            android:id="@+id/nomLatin"
+            android:layout_width="159dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:text="Frequence 1" />
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="68dp"
-                android:background="#1dd1a1"
-                android:text="plantounette"
-                android:textAlignment="center"
-                android:textSize="34sp"
-                android:textStyle="bold" />
-
-        </TableRow>
-
-        <TableRow
+        <EditText
+            android:id="@+id/editTextDate"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:background="#c8d6e5" >
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="AJOUTER UNE PLANTE"
-                android:textAlignment="center"
-                android:textSize="20sp" />
-        </TableRow>
-
-        <TableRow
+        <EditText
+            android:id="@+id/editTextDate4"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
 
-            <EditText
-                android:id="@+id/nomLatin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Nom latin" />
-
-            <EditText
-                android:id="@+id/nom"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:text="Nom de la plante" />
-        </TableRow>
-
-        <TableRow
+        <EditText
+            android:id="@+id/editTextNumber"
             android:layout_width="match_parent"
-            android:layout_height="100dp" />
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
 
-        <TableRow
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:text="Frequence 2" />
 
-            <Button
-                android:id="@+id/button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#10ac84"
-                android:backgroundTint="#10ac84"
-                android:onClick="ajoutPlante"
-                android:text="Ajouter Plante"
-                app:iconTint="#10ac84" />
+        <EditText
+            android:id="@+id/editTextDate2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
 
-        </TableRow>
+        <EditText
+            android:id="@+id/editTextDate5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/editTextNumber2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Frequence 3" />
+
+        <EditText
+            android:id="@+id/editTextDate3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/editTextDate6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/editTextNumber3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="ajoutPlante"
+            android:text="Ajouter Plante" />
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
