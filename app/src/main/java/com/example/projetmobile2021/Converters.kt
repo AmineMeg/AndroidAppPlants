@@ -1,52 +1,59 @@
 package com.example.projetmobile2021
 
 import android.icu.util.UniversalTimeScale.toLong
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.room.TypeConverter
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class Converters {
+    @RequiresApi(Build.VERSION_CODES.O)
     @TypeConverter
-    fun fromTimesTamp(value: Long):Date{
-        return value.let{ Date(it)}
+    fun fromTimesTamp(value: String): LocalDate {
+        return LocalDate.parse(value, DateTimeFormatter.ISO_DATE)
 
     }
 
     @TypeConverter
-    fun dateToTimestamp(date: Date):Long{
-        return date.time.toLong()
+    fun dateToTimestamp(date: LocalDate):String{
+
+        return date.toString()
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @TypeConverter
-    fun fromString(list : String) : List<Date> {
-        var listDate:List<Date> = arrayListOf()
+    fun fromString(list : String) : List<LocalDate> {
+        var listDate:MutableList<LocalDate> = arrayListOf()
         var listString : List<String> = list.split(",").map{it}
-        var stringToLong : List<Long> = arrayListOf()
+
+        Log.i("date","ICIIIIIIIIIIIIIIII"+list)
 
         for (i in 0..listString.size-1){
-            stringToLong.toMutableList().add(listString.get(i).toLong())
-            listDate.toMutableList().add(fromTimesTamp(stringToLong.get(i)))
+            listDate.add(fromTimesTamp(listString.get(i)))
         }
 
         return listDate
     }
     @TypeConverter
-    fun fromListDateToString(listDate:List<Date>):String{
-        var listString : List<String> = arrayListOf()
-
+    fun fromListDateToString(listDate:List<LocalDate>):String{
+        var listString : MutableList<String> = arrayListOf()
         for(i in 0..listDate.size-1){
-            listString.toMutableList().add(dateToTimestamp(listDate.get(i)).toString())
+            listString.add(dateToTimestamp(listDate.get(i)))
         }
         return listString.joinToString(separator =",")
     }
 
     @TypeConverter
     fun fromStringToInt(listString : String):List<Int>{
-        var listFreq : List<Int> = arrayListOf()
+        var listFreq : MutableList<Int> = arrayListOf()
         var listString : List<String> = listString.split(",").map{it}
 
         for (i in 0..listString.size-1){
-            listFreq.toMutableList().add(listString.get(i).toInt())
+            listFreq.add(listString.get(i).toInt())
         }
 
         return listFreq
@@ -54,9 +61,9 @@ class Converters {
 
     @TypeConverter
     fun fromListIntToString(listInt:List<Int>):String{
-        var listString : List<String> = arrayListOf()
+        var listString : MutableList<String> = arrayListOf()
         for(i in 0..listInt.size-1){
-            listString.toMutableList().add(listInt.get(i).toString())
+            listString.add(listInt.get(i).toString())
         }
 
         return listString.joinToString(separator =",")

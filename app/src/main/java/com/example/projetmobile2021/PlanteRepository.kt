@@ -1,9 +1,10 @@
 package com.example.projetmobile2021
 
 import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
 
 class PlanteRepository(private val myDAO : MyDAO) {
-    val allPlantes : List<Plante> = myDAO.getAllPlantes()
+    //val allPlantes : LiveData<List<Plante>> = myDAO.getAllPlantes()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

@@ -1,40 +1,41 @@
 package com.example.projetmobile2021
 
 import android.app.Application
+import android.os.Build
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.Month
 import java.util.*
 
 class PlanteViewModel(application: Application) : AndroidViewModel(application) {
 
     val dao = PlanteBD.getDatabase(application).MyDAO()
-    //val listPlantes : List<Plante> = dao.getAllPlantes()
     val TAG = "AddPaysViewModel"
 
-    fun addPlante(nom : String, nomLatin : String,freq : List<Int>){
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun addPlante(){
         Thread{
             dao.insert(
                 Plante(
-                    id = 0, nom = nom.trim(),nomLatin = nomLatin.trim(),
-                    dateFrequence = arrayListOf(Date(2021,11,12)),
-                    dernierArosage = Date(2021,11,12),
-                    frequence = freq
+                    id = 0, nom = "tesst", nomLatin = "test",
+                    dateFrequence = arrayListOf(LocalDate.of(2021,1,15),LocalDate.of(2021,4,15)),
+                    dernierArosage =  LocalDate.of(2021,11,28),
+                    frequence = arrayListOf(2)
                 )
             )
+            val b = dao.getAllPlantes()
+            for (au in b) {
+                Log.d("test","nom = ${au.nom}")
+            }
         }.start()
 
     }
 
-    fun getPlantes(): List<Plante>{
-        var listePlante : List<Plante> = listOf()
-        Thread{
-            listePlante = dao.getAllPlantes()
-
-        }.start()
-        return listePlante
-
+    fun getAllPlante() {
     }
+
 }

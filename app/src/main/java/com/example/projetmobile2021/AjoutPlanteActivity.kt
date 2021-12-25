@@ -35,7 +35,9 @@ class AjoutPlanteActivity : AppCompatActivity() {
         var listDateSep2 : List<String> =  dateFreq2.text.toString().split("/").map { it }
         var freq1 : EditText = findViewById(R.id.editTextNumber)
         //var listDate : List<Date> = arrayListOf(Date(listDateSep[0].toInt(),listDateSep[1].toInt(),listDateSep[2].toInt()),Date(listDateSep2[0].toInt(),listDateSep2[1].toInt(),listDateSep2[2].toInt()))
-        model.addPlante(nom.text.toString(),nomL.text.toString(), arrayListOf(freq1.text.toString().toInt()))
+        model.addPlante()
+        val intent = Intent(this, AffichagePlanteActivity::class.java)
+        startActivity(intent)
 
     }
 

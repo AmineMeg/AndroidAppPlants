@@ -1,11 +1,13 @@
 package com.example.projetmobile2021
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
 interface MyDAO {
+
     @Query("SELECT * FROM plante_tab")
-    fun getAllPlantes():List<Plante>
+    fun getAllPlantes(): List<Plante>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
      fun insert(pl : Plante)
