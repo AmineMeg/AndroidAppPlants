@@ -19,12 +19,38 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
     @RequiresApi(Build.VERSION_CODES.O)
     fun addPlante(nom:String,nomLatin:String,dateDeb:List<LocalDate>,dateFin:List<LocalDate>,freq:List<Int>,uri:String){
         Thread{
+            Log.i("tst", dateDeb.size.toString())
+            var freqActuel = 0;
+            for (i in 0..(dateDeb.size-1)) {
+                if (dateDeb[i].year == dateFin[i].year) {
+                    if(LocalDate.now().month>=dateDeb[i].month &&
+                        LocalDate.now().month<=dateFin[i].month &&
+                        LocalDate.now().dayOfMonth>=dateDeb[i].dayOfMonth &&
+                        LocalDate.now().dayOfMonth<=dateFin[i].dayOfMonth){
+
+                            freqActuel = freq[i];
+
+                    }
+                } else {
+                    if (LocalDate.now().month >= dateDeb[i].month &&
+                        LocalDate.now().dayOfMonth >= dateDeb[i].dayOfMonth
+                        ||
+                        LocalDate.now().month <= dateFin[i].month &&
+                        LocalDate.now().dayOfMonth <= dateFin[i].dayOfMonth
+                    ) {
+                        freqActuel = freq[i];
+                    }
+                }
+
+                Log.i("tst2", freq[i].toString())
+            }
             dao.insert(
                 Plante(
                     id = 0, nom = nom, nomLatin = nomLatin,
                     dateFrequenceDebut = dateDeb,
                     dateFrequenceFin = dateFin ,
-                    dernierArosage =  LocalDate.of(1999,1,1),
+                    dernierArosage =  LocalDate.now(),
+                    prochainArosage = LocalDate.now().plusDays(freqActuel.toLong()),
                     frequence = freq,
                     uriImage = uri
                 )
@@ -48,6 +74,7 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                 dateFrequenceFin = plante.dateFrequenceFin,
                 frequence = plante.frequence,
                 dernierArosage = plante.dernierArosage,
+                prochainArosage = plante.prochainArosage,
                 uriImage = plante.uriImage
             )
             )}.start()
