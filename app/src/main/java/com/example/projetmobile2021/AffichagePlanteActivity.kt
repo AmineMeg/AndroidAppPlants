@@ -2,6 +2,7 @@ package com.example.projetmobile2021
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -34,6 +35,8 @@ class AffichagePlanteActivity : AppCompatActivity() {
         adapter.setPlante(listePlante)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+
     }
 
 

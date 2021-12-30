@@ -20,4 +20,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, AffichagePlanteActivity::class.java)
         startActivity(intent)
     }
+
+    fun pageArrosagePlante(view: android.view.View) {
+        val intent = Intent(this, ArrosageActivity::class.java)
+        startActivity(intent)
+    }
 }

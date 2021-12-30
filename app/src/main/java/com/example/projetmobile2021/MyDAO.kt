@@ -2,6 +2,7 @@ package com.example.projetmobile2021
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import java.time.LocalDate
 
 @Dao
 interface MyDAO {
@@ -17,4 +18,7 @@ interface MyDAO {
 
     @Query("Select * FROM plante_tab where id = :idPlante")
     fun getPlante(idPlante: Int) :List<Plante>
+
+    @Update
+    fun updatePlante(vararg plante:Plante)
 }

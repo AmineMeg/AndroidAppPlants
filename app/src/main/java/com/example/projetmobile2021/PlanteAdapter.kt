@@ -1,8 +1,11 @@
 package com.example.projetmobile2021
 
+import android.net.Uri
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ListAdapter
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -24,7 +27,17 @@ class PlanteAdapter : RecyclerView.Adapter<PlanteAdapter.VH>() {
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.plante=allPlantes[position]
         holder.itemView.findViewById<TextView>(R.id.nomPlante).text = holder.plante.nom
+        holder.itemView.findViewById<TextView>(R.id.nomLatin).text = holder.plante.nomLatin
+        holder.itemView.findViewById<TextView>(R.id.dernierArrosage).text = holder.plante.dernierArosage.toString()
+        val localUri = Uri.parse( holder.plante.uriImage )
+        holder.itemView.findViewById<ImageView>(R.id.imagePlante).setImageURI( localUri )
+        var freqTxt : String = "date fréqeuence arrosage = "
+        for(i in 0..holder.plante.dateFrequenceDebut.size-1){
+            Log.d("tst",i.toString())
+            freqTxt+="du "+holder.plante.dateFrequenceDebut[i].toString() + "au" + holder.plante.dateFrequenceFin[i].toString() + " / "
+        }
 
+        holder.itemView.findViewById<TextView>(R.id.frequenceArrosage).text = freqTxt
     }
 
     override fun getItemCount(): Int {

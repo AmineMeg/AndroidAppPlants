@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProjetMobile2021">
         <activity
+            android:name=".ArrosageActivity"
+            android:exported="false" />
+        <activity
             android:name=".AffichagePlanteActivity"
             android:exported="false"
             android:label="@string/title_activity_affichage_empty"

@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/activity_affichage_plante.xml" value="0.1" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/activity_ajout_plante.xml" value="0.26618705035971224" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/activity_ajout_plante.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/activity_arrosage.xml" value="0.1" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/rec_view_plante.xml" value="0.18115942028985507" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/rec_view_arrosage.xml" value="0.25" />
+        <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/rec_view_plante.xml" value="0.25" />
       </map>
     </option>
   </component>

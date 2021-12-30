@@ -17,14 +17,16 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
     val TAG = "AddPaysViewModel"
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun addPlante(){
+    fun addPlante(nom:String,nomLatin:String,dateDeb:List<LocalDate>,dateFin:List<LocalDate>,freq:List<Int>,uri:String){
         Thread{
             dao.insert(
                 Plante(
-                    id = 0, nom = "tesst", nomLatin = "test",
-                    dateFrequence = arrayListOf(LocalDate.of(2021,1,15),LocalDate.of(2021,4,15)),
-                    dernierArosage =  LocalDate.of(2021,11,28),
-                    frequence = arrayListOf(2)
+                    id = 0, nom = nom, nomLatin = nomLatin,
+                    dateFrequenceDebut = dateDeb,
+                    dateFrequenceFin = dateFin ,
+                    dernierArosage =  LocalDate.of(1999,1,1),
+                    frequence = freq,
+                    uriImage = uri
                 )
             )
             val b = dao.getAllPlantes()
@@ -35,7 +37,21 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
 
     }
 
-    fun getAllPlante() {
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun updatePlante(plante:Plante){
+        Thread{
+            dao.updatePlante(Plante(
+                id = plante.id,
+                nom = plante.nom,
+                nomLatin = plante.nomLatin,
+                dateFrequenceDebut = plante.dateFrequenceDebut,
+                dateFrequenceFin = plante.dateFrequenceFin,
+                frequence = plante.frequence,
+                dernierArosage = plante.dernierArosage,
+                uriImage = plante.uriImage
+            )
+            )}.start()
+
     }
 
 }
