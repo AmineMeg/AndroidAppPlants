@@ -12,6 +12,7 @@ data class Plante(
     var nom: String,
     var nomLatin: String?,
     var dernierArosage: LocalDate,
+    var prochainArosage: LocalDate,
     var dateFrequenceDebut: List<LocalDate>,
     var dateFrequenceFin: List<LocalDate>,
     var frequence: List<Int>,

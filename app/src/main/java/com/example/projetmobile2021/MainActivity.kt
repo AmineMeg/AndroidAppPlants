@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun afficherPäys(view: android.view.View) {
+    fun afficherPlantes(view: android.view.View) {
         val intent = Intent(this, AffichagePlanteActivity::class.java)
         startActivity(intent)
     }

@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.annotation.ContentView
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,7 +19,7 @@ import java.time.LocalDate
 class ArrosageActivity : AppCompatActivity() {
 
     val model by lazy { ViewModelProvider(this).get(PlanteViewModel::class.java)}
-
+    var plantes = MutableLiveData<List<Plante>>()
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,15 +28,15 @@ class ArrosageActivity : AppCompatActivity() {
 
         val recyclerView = findViewById(R.id.recycler) as RecyclerView
         val adapter = ArrosageAdapter(this)
-        var listePlante : MutableList<Plante> = mutableListOf()
-        val bd = PlanteBD.getDatabase(application)
-        val t= Thread{listePlante=bd.MyDAO().getAllPlantes().toMutableList()}
-        t.start()
-        t.join()
-        Log.d("test45",listePlante.toString())
-        adapter.setPlante(listePlante)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+        model.getPlante()
+        plantes=model.plantes
+
+        plantes.observe(this){
+            adapter.setPlante(it)
+
+        }
 
     }
 
@@ -43,5 +44,9 @@ class ArrosageActivity : AppCompatActivity() {
     fun updateDatePlante(plante:Plante){
         plante.dernierArosage = LocalDate.now()
         model.updatePlante(plante)
+        model.getPlante()
+        plantes=model.plantes
+
+
     }
 }

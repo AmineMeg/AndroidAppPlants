@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.Month
@@ -16,6 +17,15 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
     val dao = PlanteBD.getDatabase(application).MyDAO()
     val TAG = "AddPaysViewModel"
 
+    val plantes = MutableLiveData<List<Plante>>()
+
+    fun getPlante(){
+        Thread{plantes.postValue(dao.getAllPlantes())}.start()
+    }
+
+    fun deletePlante(id:Int){
+        Thread{dao.deletePlante(id)}.start()
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     fun addPlante(nom:String,nomLatin:String,dateDeb:List<LocalDate>,dateFin:List<LocalDate>,freq:List<Int>,uri:String){
         Thread{
@@ -50,7 +60,7 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                     dateFrequenceDebut = dateDeb,
                     dateFrequenceFin = dateFin ,
                     dernierArosage =  LocalDate.now(),
-                    prochainArosage = LocalDate.now().plusDays(freqActuel.toLong()),
+                    prochainArosage = LocalDate.now()/*.plusDays(freqActuel.toLong())*/,
                     frequence = freq,
                     uriImage = uri
                 )
@@ -77,7 +87,8 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                 prochainArosage = plante.prochainArosage,
                 uriImage = plante.uriImage
             )
-            )}.start()
+            )
+            }.start()
 
     }
 

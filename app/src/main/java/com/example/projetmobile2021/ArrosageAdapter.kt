@@ -17,7 +17,7 @@ import java.time.LocalDate
 class ArrosageAdapter(arrosage:ArrosageActivity) : RecyclerView.Adapter<ArrosageAdapter.VH>() {
 
     var arrosageAct : ArrosageActivity = arrosage
-    var plantesPourArrosage : MutableList<Plante> = mutableListOf()
+    var plantesPourArrosage : List<Plante> = mutableListOf()
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView){
         lateinit var plante : Plante
@@ -56,7 +56,7 @@ class ArrosageAdapter(arrosage:ArrosageActivity) : RecyclerView.Adapter<Arrosage
                 }
             }
             arrosageAct.updateDatePlante(plantesPourArrosage[position])
-            setPlante(plantesPourArrosage )
+            notifyItemRemoved(position)
         }
         val localUri = Uri.parse( holder.plante.uriImage )
         holder.itemView.findViewById<ImageView>(R.id.imagePlante).setImageURI( localUri )
@@ -66,34 +66,13 @@ class ArrosageAdapter(arrosage:ArrosageActivity) : RecyclerView.Adapter<Arrosage
         return plantesPourArrosage.size
     }
     @RequiresApi(Build.VERSION_CODES.O)
-    fun setPlante(plantes : MutableList<Plante> ){
-        for(i in 0..plantes.size-1){
-            var k = 0
-            for(j in 0..plantes[i].dateFrequenceDebut.size-1){
-                if (plantes[i].dateFrequenceDebut[j].year == plantes[i].dateFrequenceFin[j].year) {
-                    if(LocalDate.now().month>=plantes[i].dateFrequenceDebut[j].month &&
-                        LocalDate.now().month<=plantes[i].dateFrequenceFin[j].month &&
-                        LocalDate.now().dayOfMonth>=plantes[i].dateFrequenceDebut[j].dayOfMonth &&
-                        LocalDate.now().dayOfMonth<=plantes[i].dateFrequenceFin[j].dayOfMonth){
-                        k=j
-                    }
-                } else {
-                    if (LocalDate.now().month >= plantes[i].dateFrequenceDebut[j].month &&
-                        LocalDate.now().dayOfMonth >= plantes[i].dateFrequenceDebut[j].dayOfMonth
-                        ||
-                        LocalDate.now().month <= plantes[i].dateFrequenceFin[j].month &&
-                        LocalDate.now().dayOfMonth <= plantes[i].dateFrequenceFin[j].dayOfMonth
-                    ) {
-                        k=j
-                    }
-                }
-            }
-
-            if(LocalDate.now().compareTo(plantes[i].dernierArosage)>=plantes[i].frequence[k])
-                plantesPourArrosage.add(plantes[i])
+    fun setPlante(plantes : List<Plante> ){
+        val liste : MutableList<Plante> = mutableListOf()
+        for (i in 0..plantes.size-1){
+            if(plantes[i].prochainArosage.equals(LocalDate.now()))
+                liste.add(plantes[i])
         }
-
-        //sortedList.replaceAll(allPays)
+        plantesPourArrosage=liste
         notifyDataSetChanged()
     }
 }

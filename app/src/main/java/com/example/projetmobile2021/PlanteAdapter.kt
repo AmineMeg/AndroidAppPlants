@@ -5,13 +5,12 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.ListAdapter
-import android.widget.TextView
+import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
 
-class PlanteAdapter : RecyclerView.Adapter<PlanteAdapter.VH>() {
+class PlanteAdapter(planteAct : AffichagePlanteActivity) : RecyclerView.Adapter<PlanteAdapter.VH>() {
 
+    private var activity = planteAct
     private var allPlantes : List<Plante> = listOf()
 
 
@@ -38,6 +37,10 @@ class PlanteAdapter : RecyclerView.Adapter<PlanteAdapter.VH>() {
         }
 
         holder.itemView.findViewById<TextView>(R.id.frequenceArrosage).text = freqTxt
+
+        holder.itemView.findViewById<ImageButton>(R.id.supprimer).setOnClickListener{
+            activity.supprimerPlante(holder.plante.id,position)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -46,7 +49,6 @@ class PlanteAdapter : RecyclerView.Adapter<PlanteAdapter.VH>() {
 
     fun setPlante(plantes : List<Plante> ){
         this.allPlantes = plantes
-        //sortedList.replaceAll(allPays)
         notifyDataSetChanged()
     }
 }

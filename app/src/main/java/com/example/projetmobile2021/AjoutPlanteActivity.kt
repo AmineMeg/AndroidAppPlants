@@ -1,5 +1,6 @@
 package com.example.projetmobile2021
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
@@ -67,27 +68,69 @@ class AjoutPlanteActivity : AppCompatActivity() {
 
         var nom : EditText = findViewById(R.id.nom)
         var nomLatin : EditText = findViewById(R.id.nomLatin)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            model.addPlante(nom.text.toString(),nomLatin.text.toString(),listeDateFreqDeb,listeDateFreqFin,listeFreq,localUri.toString())
+        if(nom.text.toString()==""||nom.text.toString()==null){
+            AlertDialog.Builder(this).setMessage("Ajouter le nom de la plante")
+                .setCancelable(true).show()
+        }else if(listeDateFreqDeb.size==0){
+            AlertDialog.Builder(this).setMessage("Ajouter des fréquence d'arrosage")
+                .setCancelable(true).show()
+        }else if(localUri==null){
+            AlertDialog.Builder(this).setMessage("Ajouter une image pour la plante")
+                .setCancelable(true).show()
+        }else{
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                model.addPlante(
+                    nom.text.toString(),
+                    nomLatin.text.toString(),
+                    listeDateFreqDeb,
+                    listeDateFreqFin,
+                    listeFreq,
+                    localUri.toString()
+                )
+            }
+            AlertDialog.Builder(this).setMessage("Ajout d'une plante effectué")
+                .setCancelable(true).show()
+            nom.setText("")
+            nomLatin.setText("")
+            localUri = null
+            findViewById<ImageView>(R.id.imagePlante).setImageURI(localUri)
+            listeDateFreqDeb = arrayListOf()
+            listeDateFreqFin = arrayListOf()
+            listeFreq = arrayListOf()
+
         }
-        val intent = Intent(this, AffichagePlanteActivity::class.java)
-        startActivity(intent)
 
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun ajoutFreqArrosage(view: android.view.View) {
-        var dateFreqDeb : TextView = findViewById(R.id.dateDebut)
-        var dateFreqFin : TextView = findViewById(R.id.dateFin)
-        var freq : EditText = findViewById(R.id.frequence)
-        var debut : List<String> = dateFreqDeb.text.split("/").map{it}
-        var fin : List<String> = dateFreqFin.text.split("/").map{it}
-        listeDateFreqDeb.add(LocalDate.of(debut[2].toInt(),debut[1].toInt(),debut[0].toInt()))
-        listeDateFreqFin.add(LocalDate.of(fin[2].toInt(),fin[1].toInt(),fin[0].toInt()))
-        listeFreq.add(freq.text.toString().toInt())
-        dateFreqDeb.setText("")
-        dateFreqFin.setText("")
-        freq.setText("")
+        if(listeDateFreqDeb.size<=2) {
+            var dateFreqDeb: TextView = findViewById(R.id.dateDebut)
+            var dateFreqFin: TextView = findViewById(R.id.dateFin)
+            var freq: EditText = findViewById(R.id.frequence)
+            if(!(dateFreqDeb.text.toString()==""||dateFreqDeb.text.toString()==null||dateFreqFin.text.toString()==""||dateFreqFin.text.toString()==null||freq.text.toString()==""||freq.text.toString()==null)) {
+                var debut: List<String> = dateFreqDeb.text.split("/").map { it }
+                var fin: List<String> = dateFreqFin.text.split("/").map { it }
+                listeDateFreqDeb.add(
+                    LocalDate.of(
+                        debut[2].toInt(),
+                        debut[1].toInt(),
+                        debut[0].toInt()
+                    )
+                )
+                listeDateFreqFin.add(LocalDate.of(fin[2].toInt(), fin[1].toInt(), fin[0].toInt()))
+                listeFreq.add(freq.text.toString().toInt())
+                dateFreqDeb.setText("")
+                dateFreqFin.setText("")
+                freq.setText("")
+            }else{
+                AlertDialog.Builder(this).setMessage("Remplissez toutes les infos pour la fréquence d'arrosage")
+                    .setCancelable(true).show()
+            }
+        }else{
+            AlertDialog.Builder(this).setMessage("Vous ne pouvez ajouter que 3 frequences d'arrosage")
+                .setCancelable(true).show()
+        }
     }
 
     @RequiresApi(Build.VERSION_CODES.N)

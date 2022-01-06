@@ -23,19 +23,19 @@
         tools:layout_editor_absoluteY="20dp">
 
         <Button
-            android:id="@+id/ajoutPays"
+            android:id="@+id/ajoutPlante"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="Ajouter Pays"
+            android:text="Ajouter Plante"
             android:onClick="pageAjoutPlante"
             />
 
         <Button
-            android:id="@+id/affichagePays"
+            android:id="@+id/affichagePlante"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="Afficher Pays"
-            android:onClick="afficherPäys"
+            android:text="Afficher Plante"
+            android:onClick="afficherPlantes"
             />
 
         <Button

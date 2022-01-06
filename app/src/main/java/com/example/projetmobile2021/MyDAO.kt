@@ -19,6 +19,9 @@ interface MyDAO {
     @Query("Select * FROM plante_tab where id = :idPlante")
     fun getPlante(idPlante: Int) :List<Plante>
 
+    @Query("DELETE FROM plante_tab WHERE id = :idPlante")
+    fun deletePlante(idPlante: Int)
+
     @Update
     fun updatePlante(vararg plante:Plante)
 }

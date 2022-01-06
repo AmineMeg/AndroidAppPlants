@@ -7,6 +7,7 @@ import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -18,26 +19,34 @@ import androidx.recyclerview.widget.RecyclerView
 class AffichagePlanteActivity : AppCompatActivity() {
 
     val model by lazy { ViewModelProvider(this).get(PlanteViewModel::class.java)}
+    lateinit var adapter : PlanteAdapter
+    var plantes = MutableLiveData<List<Plante>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_affichage_plante)
 
         val recyclerView = findViewById(R.id.recycler) as RecyclerView
-        val adapter = PlanteAdapter()
-
-        var listePlante : List<Plante> = mutableListOf()
-        val bd = PlanteBD.getDatabase(application)
-        val t= Thread{listePlante=bd.MyDAO().getAllPlantes()}
-        t.start()
-        t.join()
-        Log.d("test",listePlante.toString())
-        adapter.setPlante(listePlante)
+        adapter = PlanteAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
+        model.getPlante()
+        plantes=model.plantes
+
+        plantes.observe(this){
+            adapter.setPlante(it)
+            Log.i("TST","ui")
+
+
+        }
 
     }
 
+    fun supprimerPlante(id:Int,position:Int){
+        model.deletePlante(id)
+        model.getPlante()
+        plantes=model.plantes
 
+    }
 }
