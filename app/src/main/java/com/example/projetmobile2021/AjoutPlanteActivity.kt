@@ -13,6 +13,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import org.w3c.dom.Text
 import java.io.File
 import java.net.URI
 import java.text.SimpleDateFormat
@@ -123,6 +124,9 @@ class AjoutPlanteActivity : AppCompatActivity() {
                 dateFreqDeb.setText("")
                 dateFreqFin.setText("")
                 freq.setText("")
+                var textFreq =findViewById<TextView>(R.id.textViewFreq)
+                var text : String = textFreq.text.toString() + " du : "+debut[0]+"/"+debut[1] +" au "+fin[0]+"/"+fin[1] +"\n"
+                textFreq.setText(text)
             }else{
                 AlertDialog.Builder(this).setMessage("Remplissez toutes les infos pour la fréquence d'arrosage")
                     .setCancelable(true).show()

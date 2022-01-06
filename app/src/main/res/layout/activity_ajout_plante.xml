@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".AjoutPlanteActivity">
 
     <LinearLayout
@@ -11,38 +11,55 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/textView4"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/nom"
-            android:layout_width="159dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
 
-        <EditText
-            android:id="@+id/nomLatin"
-            android:layout_width="159dp"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:text="" />
+                android:text="Nom Plante :" />
+
+            <EditText
+                android:id="@+id/nom"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="282dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nom Latin :" />
+
+            <EditText
+                android:id="@+id/nomLatin"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/textViewFreq"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Frequence 1" />
+                android:text="Frequence (au max 3) :" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -53,15 +70,15 @@
                     android:id="@+id/dateDebut"
                     android:layout_width="143dp"
                     android:layout_height="42dp"
-                    android:layout_weight="0"
-                    android:text="TextView" />
+                    android:layout_weight="0" />
 
                 <Button
                     android:id="@+id/button"
                     android:layout_width="118dp"
                     android:layout_height="wrap_content"
                     android:text="chosir date"
-                    android:onClick="chosirDateDebut"/>
+                    android:onClick="chosirDateDebut"
+                    android:backgroundTint="@color/darkgreen"/>
             </LinearLayout>
 
 
@@ -74,60 +91,81 @@
                     android:id="@+id/dateFin"
                     android:layout_width="143dp"
                     android:layout_height="42dp"
-                    android:layout_weight="0"
-                    android:text="TextView" />
+                    android:layout_weight="0" />
 
                 <Button
                     android:id="@+id/button2"
                     android:layout_width="118dp"
                     android:layout_height="wrap_content"
                     android:text="chosir date"
-                    android:onClick="chosirDateFin"/>
+                    android:onClick="chosirDateFin"
+                    android:backgroundTint="@color/darkgreen"
+                    />
             </LinearLayout>
 
 
-            <EditText
-                android:id="@+id/frequence"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="number" />
+                android:layout_height="72dp"
+                android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="frequence d'arrosage dans cette période (tous les x jours) :" />
+
+                <EditText
+                    android:id="@+id/frequence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+            </LinearLayout>
 
             <Button
                 android:id="@+id/ajoutFreq"
-                android:layout_width="186dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="ajoutFreqArrosage"
-                android:text="Ajouter frequence Arosage" />
+                android:text="Ajouter frequence Arosage"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/darkgreen"/>
 
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="191dp"
+            android:layout_height="155dp"
+            android:layout_gravity="center"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/choisirImage"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ajouter Image" />
+                android:text="Ajouter Image"
+                android:backgroundTint="@color/darkgreen"
+                android:layout_gravity="center"/>
 
             <ImageView
                 android:id="@+id/imagePlante"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_gravity="center"
                 tools:srcCompat="@tools:sample/avatars" />
         </LinearLayout>
 
         <Button
             android:id="@+id/ajoutPlante"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:onClick="ajoutPlante"
-            android:text="Ajouter Plante" />
+            android:text="Ajouter Plante"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/darkgreen"/>
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
