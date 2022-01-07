@@ -39,6 +39,7 @@ class AffichagePlanteActivity : AppCompatActivity() {
 
     fun supprimerPlante(id:Int,position:Int){
         model.deletePlante(id)
+        Log.i("Tst","tst")
 
     }
 }
