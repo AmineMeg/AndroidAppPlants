@@ -22,7 +22,8 @@ class ArrosageAdapter(arrosage:ArrosageActivity, context : Context) : RecyclerVi
         lateinit var plante : Plante
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val holder = VH(LayoutInflater.from(parent.getContext()).inflate(R.layout.rec_view_arrosage, parent, false)
+        val holder = VH(LayoutInflater.from(parent.getContext()).inflate(R.layout.rec_view_arrosage,
+            parent, false)
         )
         return holder
     }
