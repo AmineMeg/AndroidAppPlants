@@ -1,23 +1,22 @@
 package com.example.projetmobile2021
 
+import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import java.time.LocalDate
 
-class ArrosageAdapter(arrosage:ArrosageActivity) : RecyclerView.Adapter<ArrosageAdapter.VH>() {
+class ArrosageAdapter(arrosage:ArrosageActivity, context : Context) : RecyclerView.Adapter<ArrosageAdapter.VH>() {
 
     var arrosageAct : ArrosageActivity = arrosage
     var plantesPourArrosage : List<Plante> = mutableListOf()
+    var context = context
 
     class VH(itemView: View) : RecyclerView.ViewHolder(itemView){
         lateinit var plante : Plante
@@ -33,8 +32,40 @@ class ArrosageAdapter(arrosage:ArrosageActivity) : RecyclerView.Adapter<Arrosage
         Log.d("tst3","Ouais")
         holder.plante=plantesPourArrosage[position]
         var plantes = holder.plante
+        val spinner = holder.itemView.findViewById<Spinner>(R.id.arrosage_spinner)
+        ArrayAdapter.createFromResource(
+            context, R.array.freq_arrosage_array, android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            spinner.adapter = adapter
+        }
         holder.itemView.findViewById<TextView>(R.id.nomPlante).text = holder.plante.nom
         holder.itemView.findViewById<TextView>(R.id.dernierArrosage).text = holder.plante.dernierArosage.toString()
+        holder.itemView.findViewById<Button>(R.id.updateFrequence).setOnClickListener{
+            for(j in 0..plantes.dateFrequenceDebut.size-1){
+                if (plantes.dateFrequenceDebut[j].year == plantes.dateFrequenceFin[j].year) {
+                    if(LocalDate.now().month>=plantes.dateFrequenceDebut[j].month &&
+                        LocalDate.now().month<=plantes.dateFrequenceFin[j].month &&
+                        LocalDate.now().dayOfMonth>=plantes.dateFrequenceDebut[j].dayOfMonth &&
+                        LocalDate.now().dayOfMonth<=plantes.dateFrequenceFin[j].dayOfMonth){
+                        plantes.prochainArosage = LocalDate.of(LocalDate.now().year, LocalDate.now().month,LocalDate.now().dayOfMonth + Integer.parseInt(spinner.getSelectedItem().toString()))
+
+                    }
+                } else {
+                    if (LocalDate.now().month >= plantes.dateFrequenceDebut[j].month &&
+                        LocalDate.now().dayOfMonth >= plantes.dateFrequenceDebut[j].dayOfMonth
+                        ||
+                        LocalDate.now().month <= plantes.dateFrequenceFin[j].month &&
+                        LocalDate.now().dayOfMonth <= plantes.dateFrequenceFin[j].dayOfMonth
+                    ) {
+                        plantes.prochainArosage = LocalDate.of(LocalDate.now().year, LocalDate.now().month,LocalDate.now().dayOfMonth + Integer.parseInt(spinner.getSelectedItem().toString()))
+                    }
+                }
+            }
+
+            arrosageAct.updateDatePlante(plantesPourArrosage[position])
+            notifyItemRemoved(position)
+        }
         holder.itemView.findViewById<Button>(R.id.arrosage).setOnClickListener{
             for(j in 0..plantes.dateFrequenceDebut.size-1){
                 if (plantes.dateFrequenceDebut[j].year == plantes.dateFrequenceFin[j].year) {
