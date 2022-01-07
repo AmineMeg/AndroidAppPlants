@@ -10,10 +10,12 @@
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/rec_view_arrosage.xml" value="0.25" />
         <entry key="..\:/Users/Lenovo/AndroidStudioProjects/ProjetMobile2021/app/src/main/res/layout/rec_view_plante.xml" value="0.25" />
+        <entry key="..\:/Users/kreek/OneDrive/Documents/Cours/2021/S1/Mobile/ProjetMobile/projetmobile_meguenni_kacem/app/src/main/res/layout/activity_arrosage.xml" value="0.175" />
+        <entry key="..\:/Users/kreek/OneDrive/Documents/Cours/2021/S1/Mobile/ProjetMobile/projetmobile_meguenni_kacem/app/src/main/res/layout/rec_view_arrosage.xml" value="0.375" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
