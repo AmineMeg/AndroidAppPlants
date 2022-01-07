@@ -6,8 +6,10 @@ import android.content.Context
 import android.content.BroadcastReceiver
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.ViewModelProvider
 
 class AlarmReceiver : BroadcastReceiver() {
+
     override fun onReceive(context: Context?, intent: Intent?) {
 
         val i = Intent(context, ArrosageActivity::class.java)

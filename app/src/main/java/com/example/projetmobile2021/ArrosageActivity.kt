@@ -15,7 +15,6 @@ import java.time.LocalDate
 class ArrosageActivity : AppCompatActivity() {
 
     val model by lazy { ViewModelProvider(this).get(PlanteViewModel::class.java)}
-    var plantes = MutableLiveData<List<Plante>>()
     private lateinit var binding: ActivityArrosageBinding
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -26,10 +25,7 @@ class ArrosageActivity : AppCompatActivity() {
 
         binding = ActivityArrosageBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val recyclerView = findViewById(R.id.recycler) as RecyclerView
-
-        binding.recycler
-
+        val recyclerView = binding.recycler
         val adapter = ArrosageAdapter(this, this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
