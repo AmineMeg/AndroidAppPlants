@@ -16,17 +16,22 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
 
     val dao = PlanteBD.getDatabase(application).MyDAO()
     val TAG = "AddPaysViewModel"
-
     val plantes = MutableLiveData<List<Plante>>()
+    var planteSelect = MutableLiveData<List<Plante>>()
 
     fun getPlante(){
         Thread{plantes.postValue(dao.getAllPlantes())}.start()
+    }
+
+    fun loadPartialName(nom: String) {
+        Thread { planteSelect.postValue(dao.getPlantePartialNom(nom)) }.start()
     }
 
     fun deletePlante(id:Int){
         Thread{dao.deletePlante(id)
             getPlante()}.start()
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     fun addPlante(nom:String,nomLatin:String,dateDeb:List<LocalDate>,dateFin:List<LocalDate>,freq:List<Int>,uri:String){
         Thread{
@@ -66,7 +71,6 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                     uriImage = uri
                 )
             )
-
         }.start()
 
     }
@@ -84,7 +88,7 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                 dernierArosage = plante.dernierArosage,
                 prochainArosage = plante.prochainArosage,
                 uriImage = plante.uriImage
-            )
+                )
             )
             getPlante()
             }.start()

@@ -13,6 +13,8 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
+import com.example.projetmobile2021.databinding.ActivityAjoutPlanteBinding
+import com.example.projetmobile2021.databinding.ActivityArrosageBinding
 import org.w3c.dom.Text
 import java.io.File
 import java.net.URI
@@ -24,6 +26,8 @@ import java.util.*
 class AjoutPlanteActivity : AppCompatActivity() {
 
     val model by lazy { ViewModelProvider(this).get(PlanteViewModel::class.java)}
+    private lateinit var binding: ActivityAjoutPlanteBinding
+
     lateinit var listeDateFreqDeb : MutableList<LocalDate>
     lateinit var listeDateFreqFin : MutableList<LocalDate>
     lateinit var listeFreq : MutableList<Int>
@@ -54,12 +58,13 @@ class AjoutPlanteActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_ajout_plante)
+        binding = ActivityAjoutPlanteBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         listeDateFreqDeb = arrayListOf()
         listeDateFreqFin = arrayListOf()
         listeFreq = arrayListOf()
 
-        val selectButton = findViewById<Button>(R.id.choisirImage)
+        val selectButton = binding.choisirImage
         selectButton.setOnClickListener{
             getContent.launch("image/*")
         }
@@ -67,8 +72,8 @@ class AjoutPlanteActivity : AppCompatActivity() {
 
     fun ajoutPlante(view: android.view.View) {
 
-        var nom : EditText = findViewById(R.id.nom)
-        var nomLatin : EditText = findViewById(R.id.nomLatin)
+        var nom : EditText = binding.nom
+        var nomLatin : EditText = binding.nomLatin
         if(nom.text.toString()==""||nom.text.toString()==null){
             AlertDialog.Builder(this).setMessage("Ajouter le nom de la plante")
                 .setCancelable(true).show()
@@ -93,9 +98,9 @@ class AjoutPlanteActivity : AppCompatActivity() {
                 .setCancelable(true).show()
             nom.setText("")
             nomLatin.setText("")
-            findViewById<TextView>(R.id.textViewFreq).setText("Frequence (au max 3) :")
+            binding.textViewFreq.setText("Frequence (au max 3) :")
             localUri = null
-            findViewById<ImageView>(R.id.imagePlante).setImageURI(localUri)
+            binding.imagePlante.setImageURI(localUri)
             listeDateFreqDeb = arrayListOf()
             listeDateFreqFin = arrayListOf()
             listeFreq = arrayListOf()
@@ -107,8 +112,8 @@ class AjoutPlanteActivity : AppCompatActivity() {
     @RequiresApi(Build.VERSION_CODES.O)
     fun ajoutFreqArrosage(view: android.view.View) {
         if(listeDateFreqDeb.size<=2) {
-            var dateFreqDeb: TextView = findViewById(R.id.dateDebut)
-            var dateFreqFin: TextView = findViewById(R.id.dateFin)
+            var dateFreqDeb: TextView = binding.dateDebut
+            var dateFreqFin: TextView = binding.dateFin
             var freq: EditText = findViewById(R.id.frequence)
             if(!(dateFreqDeb.text.toString()==""||dateFreqDeb.text.toString()==null||dateFreqFin.text.toString()==""||dateFreqFin.text.toString()==null||freq.text.toString()==""||freq.text.toString()==null)) {
                 var debut: List<String> = dateFreqDeb.text.split("/").map { it }
@@ -125,7 +130,7 @@ class AjoutPlanteActivity : AppCompatActivity() {
                 dateFreqDeb.setText("")
                 dateFreqFin.setText("")
                 freq.setText("")
-                var textFreq =findViewById<TextView>(R.id.textViewFreq)
+                var textFreq =binding.textViewFreq
                 var text : String = textFreq.text.toString() + " du : "+debut[0]+"/"+debut[1] +" au "+fin[0]+"/"+fin[1] +"\n"
                 textFreq.setText(text)
             }else{

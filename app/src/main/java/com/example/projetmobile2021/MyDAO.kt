@@ -22,6 +22,9 @@ interface MyDAO {
     @Query("DELETE FROM plante_tab WHERE id = :idPlante")
     fun deletePlante(idPlante: Int)
 
+    @Query("SELECT * FROM plante_tab WHERE nom like :nom ||'%'")
+    fun getPlantePartialNom(nom: String): List<Plante>
+
     @Update
     fun updatePlante(vararg plante:Plante)
 }

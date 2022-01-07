@@ -29,7 +29,7 @@ class ArrosageAdapter(arrosage:ArrosageActivity, context : Context) : RecyclerVi
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: VH, position: Int) {
-        Log.d("tst3","Ouais")
+
         holder.plante=plantesPourArrosage[position]
         var plantes = holder.plante
         val spinner = holder.itemView.findViewById<Spinner>(R.id.arrosage_spinner)
@@ -73,7 +73,8 @@ class ArrosageAdapter(arrosage:ArrosageActivity, context : Context) : RecyclerVi
                         LocalDate.now().month<=plantes.dateFrequenceFin[j].month &&
                         LocalDate.now().dayOfMonth>=plantes.dateFrequenceDebut[j].dayOfMonth &&
                         LocalDate.now().dayOfMonth<=plantes.dateFrequenceFin[j].dayOfMonth){
-                        plantes.prochainArosage = LocalDate.of(LocalDate.now().year, LocalDate.now().month,LocalDate.now().dayOfMonth + plantes.frequence[j])
+
+                            plantes.prochainArosage = LocalDate.of(LocalDate.now().year, LocalDate.now().month,LocalDate.now().dayOfMonth + plantes.frequence[j])
 
                     }
                 } else {
