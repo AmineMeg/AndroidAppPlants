@@ -30,6 +30,7 @@ class ArrosageAdapter(arrosage:ArrosageActivity) : RecyclerView.Adapter<Arrosage
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: VH, position: Int) {
+        Log.d("tst3","Ouais")
         holder.plante=plantesPourArrosage[position]
         var plantes = holder.plante
         holder.itemView.findViewById<TextView>(R.id.nomPlante).text = holder.plante.nom
@@ -67,11 +68,13 @@ class ArrosageAdapter(arrosage:ArrosageActivity) : RecyclerView.Adapter<Arrosage
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun setPlante(plantes : List<Plante> ){
+        Log.d("tst",plantes.toString())
         val liste : MutableList<Plante> = mutableListOf()
         for (i in 0..plantes.size-1){
             if(plantes[i].prochainArosage.equals(LocalDate.now()))
                 liste.add(plantes[i])
         }
+        Log.d("tst2",liste.toString())
         plantesPourArrosage=liste
         notifyDataSetChanged()
     }

@@ -24,7 +24,8 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun deletePlante(id:Int){
-        Thread{dao.deletePlante(id)}.start()
+        Thread{dao.deletePlante(id)
+            getPlante()}.start()
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun addPlante(nom:String,nomLatin:String,dateDeb:List<LocalDate>,dateFin:List<LocalDate>,freq:List<Int>,uri:String){
@@ -65,10 +66,7 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                     uriImage = uri
                 )
             )
-            val b = dao.getAllPlantes()
-            for (au in b) {
-                Log.d("test","nom = ${au.nom}")
-            }
+
         }.start()
 
     }
@@ -88,6 +86,7 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                 uriImage = plante.uriImage
             )
             )
+            getPlante()
             }.start()
 
     }

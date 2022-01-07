@@ -20,7 +20,6 @@ class AffichagePlanteActivity : AppCompatActivity() {
 
     val model by lazy { ViewModelProvider(this).get(PlanteViewModel::class.java)}
     lateinit var adapter : PlanteAdapter
-    var plantes = MutableLiveData<List<Plante>>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +29,9 @@ class AffichagePlanteActivity : AppCompatActivity() {
         adapter = PlanteAdapter(this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-
         model.getPlante()
-        plantes=model.plantes
-
-        plantes.observe(this){
+        model.plantes.observe(this){
             adapter.setPlante(it)
-            Log.i("TST","ui")
-
 
         }
 
@@ -45,8 +39,6 @@ class AffichagePlanteActivity : AppCompatActivity() {
 
     fun supprimerPlante(id:Int,position:Int){
         model.deletePlante(id)
-        model.getPlante()
-        plantes=model.plantes
 
     }
 }

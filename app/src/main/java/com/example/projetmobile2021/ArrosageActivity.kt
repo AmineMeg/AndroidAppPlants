@@ -31,9 +31,8 @@ class ArrosageActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
         model.getPlante()
-        plantes=model.plantes
 
-        plantes.observe(this){
+        model.plantes.observe(this){
             adapter.setPlante(it)
 
         }
@@ -44,9 +43,5 @@ class ArrosageActivity : AppCompatActivity() {
     fun updateDatePlante(plante:Plante){
         plante.dernierArosage = LocalDate.now()
         model.updatePlante(plante)
-        model.getPlante()
-        plantes=model.plantes
-
-
     }
 }

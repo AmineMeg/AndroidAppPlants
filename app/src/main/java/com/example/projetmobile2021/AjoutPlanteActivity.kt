@@ -93,6 +93,7 @@ class AjoutPlanteActivity : AppCompatActivity() {
                 .setCancelable(true).show()
             nom.setText("")
             nomLatin.setText("")
+            findViewById<TextView>(R.id.textViewFreq).setText("Frequence (au max 3) :")
             localUri = null
             findViewById<ImageView>(R.id.imagePlante).setImageURI(localUri)
             listeDateFreqDeb = arrayListOf()
