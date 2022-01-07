@@ -25,4 +25,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, ArrosageActivity::class.java)
         startActivity(intent)
     }
+
+    fun pageParametres(view: android.view.View) {
+        val intent = Intent(this, ParametresActivity::class.java)
+        startActivity(intent)
+    }
 }
