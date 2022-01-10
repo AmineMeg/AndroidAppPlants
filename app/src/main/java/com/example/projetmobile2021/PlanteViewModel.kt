@@ -27,6 +27,10 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
         Thread { planteSelect.postValue(dao.getPlantePartialNom(nom)) }.start()
     }
 
+    fun getPlante(id: Int){
+        Thread { planteSelect.postValue(dao.getPlante(id))}.start()
+    }
+
     fun deletePlante(id:Int){
         Thread{dao.deletePlante(id)
             getPlante()}.start()

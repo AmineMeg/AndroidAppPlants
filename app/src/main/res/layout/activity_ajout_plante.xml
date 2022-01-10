@@ -73,7 +73,7 @@
                     android:layout_weight="0" />
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/supprimer"
                     android:layout_width="118dp"
                     android:layout_height="wrap_content"
                     android:text="chosir date"

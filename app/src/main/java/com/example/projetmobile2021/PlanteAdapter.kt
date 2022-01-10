@@ -1,11 +1,13 @@
 package com.example.projetmobile2021
 
+import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 
 class PlanteAdapter(planteAct : AffichagePlanteActivity) : RecyclerView.Adapter<PlanteAdapter.VH>() {
@@ -36,7 +38,13 @@ class PlanteAdapter(planteAct : AffichagePlanteActivity) : RecyclerView.Adapter<
         }
         holder.itemView.findViewById<TextView>(R.id.frequenceArrosage).text = freqTxt
         holder.itemView.findViewById<ImageButton>(R.id.supprimer).setOnClickListener{
-            activity.supprimerPlante(holder.plante.id,position)
+            activity.supprimerPlante(holder.plante.id)
+        }
+        holder.itemView.findViewById<Button>(R.id.editer).setOnClickListener{
+            Log.i("test1", "let's go")
+            val intent = Intent(activity, EditPlanteActivity::class.java)
+            intent.putExtra("id", holder.plante.id);
+            activity.startActivity(intent)
         }
     }
 

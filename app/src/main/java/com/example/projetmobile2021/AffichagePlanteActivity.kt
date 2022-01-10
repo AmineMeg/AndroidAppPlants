@@ -38,7 +38,6 @@ class AffichagePlanteActivity : AppCompatActivity() {
         model.getPlante()
         model.plantes.observe(this){
             adapter.setPlante(it)
-
         }
 
         binding.recherchePlante.addTextChangedListener( object : TextWatcher{

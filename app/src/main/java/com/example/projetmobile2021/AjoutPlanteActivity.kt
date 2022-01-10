@@ -3,7 +3,6 @@ package com.example.projetmobile2021
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,10 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import androidx.lifecycle.ViewModelProvider
 import com.example.projetmobile2021.databinding.ActivityAjoutPlanteBinding
-import com.example.projetmobile2021.databinding.ActivityArrosageBinding
-import org.w3c.dom.Text
 import java.io.File
-import java.net.URI
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
