@@ -11,7 +11,6 @@ import android.util.Log
 import android.widget.*
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
-import com.example.projetmobile2021.databinding.ActivityAjoutPlanteBinding
 import com.example.projetmobile2021.databinding.ActivityEditPlanteBinding
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -53,6 +52,35 @@ class EditPlanteActivity : AppCompatActivity() {
         inputStream?.close()
 
         findViewById<ImageView>(R.id.imagePlante).setImageURI(localUri)
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle){
+        super.onSaveInstanceState(outState)
+        var nom = binding.nom.text.toString()
+        var nomLatin = binding.nomLatin.text.toString()
+        var freqD1 = binding.dateDebut1.text.toString()
+        var freqF1 = binding.dateFin1.text.toString()
+        var freqD2 = binding.dateDebut2.text.toString()
+        var freqF2 = binding.dateFin2.text.toString()
+        var freqD3 = binding.dateDebut3.text.toString()
+        var freqF3 = binding.dateFin3.text.toString()
+        var freq1 = binding.frequence1.selectedItem.toString()
+        var freq2 = binding.frequence2.selectedItem.toString()
+        var freq3 = binding.frequence3.selectedItem.toString()
+        var uriSave = localUri.toString()
+        outState.putString("nom", nom)
+        outState.putString("nomLatin", nomLatin)
+        outState.putString("freqD1", freqD1)
+        outState.putString("freqF1", freqF1)
+        outState.putString("freqD2", freqD2)
+        outState.putString("freqF2", freqF2)
+        outState.putString("freqD3", freqD3)
+        outState.putString("freqF3", freqF3)
+        outState.putString("freq1", freq1)
+        outState.putString("freq2", freq2)
+        outState.putString("freq3", freq3)
+        outState.putString("uriSave", uriSave)
 
     }
 
@@ -183,6 +211,7 @@ class EditPlanteActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_plante)
         binding = ActivityEditPlanteBinding.inflate(layoutInflater)
@@ -263,6 +292,20 @@ class EditPlanteActivity : AppCompatActivity() {
                     }
                 }
 
+            }
+
+            if (savedInstanceState != null){
+                binding.nom.setText(savedInstanceState.getString("nom"))
+                binding.nomLatin.setText(savedInstanceState.getString("nomLatin"))
+                binding.dateDebut1.setText(savedInstanceState.getString("freqD1"))
+                binding.dateFin1.setText(savedInstanceState.getString("freqF1"))
+                binding.dateDebut2.setText(savedInstanceState.getString("freqD2"))
+                binding.dateFin2.setText(savedInstanceState.getString("freqF2"))
+                binding.dateDebut3.setText(savedInstanceState.getString("freqD3"))
+                binding.dateFin3.setText(savedInstanceState.getString("freqF3"))
+                val myUri = Uri.parse(savedInstanceState.getString("uriSave"))
+                findViewById<ImageView>(R.id.imagePlante).setImageURI(myUri)
+                localUri = myUri
             }
 
 
