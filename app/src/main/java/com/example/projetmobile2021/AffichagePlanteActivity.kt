@@ -57,7 +57,7 @@ class AffichagePlanteActivity : AppCompatActivity() {
 
         model.planteSelect.observe(this){
             adapter.setPlante(it)
-            Log.i("Tst","tst")
+
         }
 
     }

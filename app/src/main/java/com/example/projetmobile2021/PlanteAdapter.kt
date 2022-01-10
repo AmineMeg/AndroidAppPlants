@@ -50,7 +50,6 @@ class PlanteAdapter(planteAct : AffichagePlanteActivity) : RecyclerView.Adapter<
             activity.supprimerPlante(holder.plante.id)
         }
         holder.itemView.findViewById<Button>(R.id.editer).setOnClickListener{
-            Log.i("test1", "let's go")
             val intent = Intent(activity, EditPlanteActivity::class.java)
             intent.putExtra("id", holder.plante.id);
             activity.startActivity(intent)

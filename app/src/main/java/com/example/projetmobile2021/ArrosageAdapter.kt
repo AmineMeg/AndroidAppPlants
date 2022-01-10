@@ -101,7 +101,7 @@ class ArrosageAdapter(arrosage:ArrosageActivity, context : Context) : RecyclerVi
     }
     @RequiresApi(Build.VERSION_CODES.O)
     fun setPlante(plantes : List<Plante> ){
-        Log.d("tst",plantes.toString())
+
         val liste : MutableList<Plante> = mutableListOf()
         for (i in 0..plantes.size-1){
             if(plantes[i].prochainArosage.equals(LocalDate.now()))

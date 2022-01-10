@@ -19,7 +19,7 @@ abstract class PlanteBD : RoomDatabase() {
                 return INSTANCE!!
             val db = Room.databaseBuilder(
                 context.applicationContext,
-                PlanteBD::class.java, "pays"
+                PlanteBD::class.java, "plante"
             ).build()
             INSTANCE = db
             return INSTANCE!!

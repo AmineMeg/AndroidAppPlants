@@ -15,7 +15,6 @@ import java.util.*
 class PlanteViewModel(application: Application) : AndroidViewModel(application) {
 
     val dao = PlanteBD.getDatabase(application).MyDAO()
-    val TAG = "AddPaysViewModel"
     val plantes = MutableLiveData<List<Plante>>()
     var planteSelect = MutableLiveData<List<Plante>>()
      var planteAct = MutableLiveData<Plante>()
