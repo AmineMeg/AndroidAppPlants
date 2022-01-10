@@ -70,7 +70,7 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
                     dateFrequenceDebut = dateDeb,
                     dateFrequenceFin = dateFin ,
                     dernierArosage =  LocalDate.now(),
-                    prochainArosage = LocalDate.now().plusDays(freqActuel.toLong()),
+                    prochainArosage = LocalDate.now()/*.plusDays(freqActuel.toLong())*/,
                     frequence = freq,
                     uriImage = uri
                 )
