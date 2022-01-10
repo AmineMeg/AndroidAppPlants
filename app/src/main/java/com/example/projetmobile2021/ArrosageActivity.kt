@@ -40,7 +40,6 @@ class ArrosageActivity : AppCompatActivity() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun updateDatePlante(plante:Plante){
-        plante.dernierArosage = LocalDate.now()
         model.updatePlante(plante)
     }
 }

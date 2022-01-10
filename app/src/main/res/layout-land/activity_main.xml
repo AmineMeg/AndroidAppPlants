@@ -10,57 +10,42 @@
     <LinearLayout
         android:layout_width="409dp"
         android:layout_height="710dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="20dp">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/arrosage"
-            android:layout_gravity="center"/>
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bienvenue sur votre application d'arrosage"
-            android:textColor="@color/darkgreen"
-            android:layout_gravity="center"
-            android:paddingBottom="15dp"
-            android:paddingTop="15dp"/>
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <Button
             android:id="@+id/ajoutPlante"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="Ajouter Plante"
+            android:backgroundTint="@color/darkgreen"
             android:onClick="pageAjoutPlante"
-            android:backgroundTint="@color/darkgreen"/>
+            android:text="Ajouter Plante" />
 
         <Button
             android:id="@+id/affichagePlante"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="Afficher Plantes"
+            android:backgroundTint="@color/darkgreen"
             android:onClick="afficherPlantes"
-            android:backgroundTint="@color/darkgreen"/>
+            android:text="Afficher Plantes" />
 
         <Button
             android:id="@+id/affichageArrosage"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="Arrosage Plante"
+            android:backgroundTint="@color/darkgreen"
             android:onClick="pageArrosagePlante"
-            android:backgroundTint="@color/darkgreen"/>
+            android:text="Arrosage Plante" />
+
         <Button
             android:id="@+id/parametres"
             android:layout_width="match_parent"
             android:layout_height="66dp"
-            android:text="Parametres"
+            android:backgroundTint="@color/darkgreen"
             android:onClick="pageParametres"
-            android:backgroundTint="@color/darkgreen"/>
+            android:text="Parametres" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

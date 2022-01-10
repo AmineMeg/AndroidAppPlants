@@ -75,7 +75,7 @@ class ArrosageAdapter(arrosage:ArrosageActivity, context : Context) : RecyclerVi
                         LocalDate.now().dayOfMonth<=plantes.dateFrequenceFin[j].dayOfMonth){
 
                             plantes.prochainArosage = LocalDate.of(LocalDate.now().year, LocalDate.now().month,LocalDate.now().dayOfMonth + plantes.frequence[j])
-
+                            plantes.dernierArosage = LocalDate.now()
                     }
                 } else {
                     if (LocalDate.now().month >= plantes.dateFrequenceDebut[j].month &&
@@ -85,6 +85,7 @@ class ArrosageAdapter(arrosage:ArrosageActivity, context : Context) : RecyclerVi
                         LocalDate.now().dayOfMonth <= plantes.dateFrequenceFin[j].dayOfMonth
                     ) {
                         plantes.prochainArosage = LocalDate.of(LocalDate.now().year, LocalDate.now().month,LocalDate.now().dayOfMonth + plantes.frequence[j])
+                        plantes.dernierArosage = LocalDate.now()
                     }
                 }
             }

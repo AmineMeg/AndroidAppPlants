@@ -135,10 +135,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="127dp"
-            android:layout_gravity="center"
-            android:orientation="vertical">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/choisirImage"
@@ -154,16 +154,17 @@
                 android:layout_height="75dp"
                 android:layout_gravity="center"
                 tools:srcCompat="@tools:sample/avatars" />
+            <Button
+                android:id="@+id/ajoutPlante"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:backgroundTint="@color/darkgreen"
+                android:onClick="ajoutPlante"
+                android:text="Ajouter Plante" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/ajoutPlante"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/darkgreen"
-            android:onClick="ajoutPlante"
-            android:text="Ajouter Plante" />
+
 
     </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

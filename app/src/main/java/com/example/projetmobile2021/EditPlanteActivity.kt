@@ -3,6 +3,7 @@ package com.example.projetmobile2021
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -206,7 +207,8 @@ class EditPlanteActivity : AppCompatActivity() {
             check = true
         }
         finish()
-        startActivity(getIntent())
+        val intent = Intent(this, AffichagePlanteActivity::class.java)
+        startActivity(intent)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

@@ -2,6 +2,7 @@ package com.example.projetmobile2021
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -28,15 +29,20 @@ class PlanteAdapter(planteAct : AffichagePlanteActivity) : RecyclerView.Adapter<
         holder.plante=allPlantes[position]
         holder.itemView.findViewById<TextView>(R.id.nomPlante).text = holder.plante.nom
         holder.itemView.findViewById<TextView>(R.id.nomLatin).text = holder.plante.nomLatin
-        holder.itemView.findViewById<TextView>(R.id.dernierArrosage).text = holder.plante.dernierArosage.toString()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            holder.itemView.findViewById<TextView>(R.id.dernierArrosage).text = holder.plante.dernierArosage.dayOfMonth.toString()+"/"+holder.plante.dernierArosage.monthValue
+        }
         val localUri = Uri.parse( holder.plante.uriImage )
         holder.itemView.findViewById<ImageView>(R.id.imagePlante).setImageURI( localUri )
-        var freqTxt = "date fréqeuence arrosage = "
+        var text = "date fréqeuence arrosage = \n"
         for(i in 0..holder.plante.dateFrequenceDebut.size-1){
-            Log.d("tst",i.toString())
-            freqTxt+="du "+holder.plante.dateFrequenceDebut[i].toString() + "au" + holder.plante.dateFrequenceFin[i].toString() + " / "
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                text += " du : "+ holder.plante.dateFrequenceDebut[i].dayOfMonth+"/"+holder.plante.dateFrequenceDebut[i].monthValue +" au "+holder.plante.dateFrequenceFin[i].dayOfMonth+"/"+holder.plante.dateFrequenceFin[i].monthValue +" tout les "+holder.plante.frequence[i]+" jours" +"\n"
+            } else {
+            }
         }
-        holder.itemView.findViewById<TextView>(R.id.frequenceArrosage).text = freqTxt
+        holder.itemView.findViewById<TextView>(R.id.frequenceArrosage).text = text
         holder.itemView.findViewById<ImageButton>(R.id.supprimer).setOnClickListener{
             activity.supprimerPlante(holder.plante.id)
         }
