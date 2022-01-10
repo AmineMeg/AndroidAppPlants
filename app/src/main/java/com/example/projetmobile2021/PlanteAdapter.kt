@@ -32,6 +32,9 @@ class PlanteAdapter(planteAct : AffichagePlanteActivity) : RecyclerView.Adapter<
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             holder.itemView.findViewById<TextView>(R.id.dernierArrosage).text = holder.plante.dernierArosage.dayOfMonth.toString()+"/"+holder.plante.dernierArosage.monthValue
         }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            holder.itemView.findViewById<TextView>(R.id.prochainArrosage).text = holder.plante.prochainArosage.dayOfMonth.toString()+"/"+holder.plante.prochainArosage.monthValue
+        }
         val localUri = Uri.parse( holder.plante.uriImage )
         holder.itemView.findViewById<ImageView>(R.id.imagePlante).setImageURI( localUri )
         var text = "date fréqeuence arrosage = \n"
