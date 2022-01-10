@@ -18,10 +18,12 @@ class PlanteViewModel(application: Application) : AndroidViewModel(application) 
     val TAG = "AddPaysViewModel"
     val plantes = MutableLiveData<List<Plante>>()
     var planteSelect = MutableLiveData<List<Plante>>()
+     var planteAct = MutableLiveData<Plante>()
 
     fun getPlante(){
         Thread{plantes.postValue(dao.getAllPlantes())}.start()
     }
+
 
     fun loadPartialName(nom: String) {
         Thread { planteSelect.postValue(dao.getPlantePartialNom(nom)) }.start()

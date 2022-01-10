@@ -13,7 +13,7 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
 import java.time.LocalDate
 
-class AlarmReceiver : BroadcastReceiver() {
+class AlarmReceiver: BroadcastReceiver() {
 
 
     @RequiresApi(Build.VERSION_CODES.O)

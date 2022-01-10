@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".AjoutPlanteActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="134dp"
+                android:layout_height="wrap_content"
+
+                android:text="Nom Plante :" />
+
+            <EditText
+                android:id="@+id/nom"
+                android:layout_width="159dp"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textPersonName" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom Latin :" />
+
+                <EditText
+                    android:id="@+id/nomLatin"
+                    android:layout_width="159dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewFreq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Frequence (au max 3) :" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/dateDebut"
+                    android:layout_width="143dp"
+                    android:layout_height="42dp"
+                    android:layout_weight="0" />
+
+                <Button
+                    android:id="@+id/supprimer"
+                    android:layout_width="118dp"
+                    android:layout_height="wrap_content"
+                    android:text="chosir date"
+                    android:onClick="chosirDateDebut"
+                    android:backgroundTint="@color/darkgreen"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="63dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dateFin"
+                        android:layout_width="143dp"
+                        android:layout_height="42dp"
+                        android:layout_weight="0" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="118dp"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/darkgreen"
+                        android:onClick="chosirDateFin"
+                        android:text="chosir date" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="frequence d'arrosage dans cette période (tous les x jours) :" />
+
+                <EditText
+                    android:id="@+id/frequence"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="number" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ajoutFreq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="ajoutFreqArrosage"
+                android:text="Ajouter frequence Arosage"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/darkgreen"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="127dp"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/choisirImage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/darkgreen"
+                android:text="Ajouter Image" />
+
+            <ImageView
+                android:id="@+id/imagePlante"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_gravity="center"
+                tools:srcCompat="@tools:sample/avatars" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/ajoutPlante"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/darkgreen"
+            android:onClick="ajoutPlante"
+            android:text="Ajouter Plante" />
+
+    </LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

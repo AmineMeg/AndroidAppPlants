@@ -6,6 +6,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -22,6 +23,7 @@ import java.util.*
 class AjoutPlanteActivity : AppCompatActivity() {
 
     val model by lazy { ViewModelProvider(this).get(PlanteViewModel::class.java)}
+    val model2 by lazy {ViewModelProvider(this).get(AjoutViewModel::class.java)}
     private lateinit var binding: ActivityAjoutPlanteBinding
 
     lateinit var listeDateFreqDeb : MutableList<LocalDate>
@@ -45,6 +47,7 @@ class AjoutPlanteActivity : AppCompatActivity() {
         inputStream?.copyTo(outputStream)
 
         localUri = file.toUri()
+        model2.uri.setValue(localUri)
         outputStream.close()
         inputStream?.close()
 
@@ -56,14 +59,36 @@ class AjoutPlanteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAjoutPlanteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        listeDateFreqDeb = arrayListOf()
-        listeDateFreqFin = arrayListOf()
-        listeFreq = arrayListOf()
-
+        if(model2.listeDebut.value!=null) {
+            listeDateFreqDeb = model2.listeDebut.value!!
+            listeDateFreqFin = model2.listeFin.value!!
+            listeFreq = model2.frequence.value!!
+        }else{
+            listeDateFreqDeb = mutableListOf()
+            listeDateFreqFin = mutableListOf()
+            listeFreq = mutableListOf()
+        }
+        affichageOncreate()
         val selectButton = binding.choisirImage
         selectButton.setOnClickListener{
             getContent.launch("image/*")
         }
+    }
+
+    fun affichageOncreate(){
+
+        Log.d("TST", model2.debut.value.toString() )
+        Log.d("TST", model2.fin.value.toString() )
+        if(model2.debut.value!=null)
+            binding.dateDebut.setText(model2.debut.value.toString())
+        if(model2.fin.value!=null)
+            binding.dateFin.setText(model2.fin.value.toString())
+        if(model2.uri.value!=null) {
+            localUri = model2.uri.value
+            binding.imagePlante.setImageURI(model2.uri.value)
+        }
+        if(model2.listeDebut.value!=null)
+            affichageListeFrequence()
     }
 
     fun ajoutPlante(view: android.view.View) {
@@ -123,12 +148,15 @@ class AjoutPlanteActivity : AppCompatActivity() {
                 )
                 listeDateFreqFin.add(LocalDate.of(fin[2].toInt(), fin[1].toInt(), fin[0].toInt()))
                 listeFreq.add(freq.text.toString().toInt())
+                model2.listeDebut.setValue(listeDateFreqDeb)
+                model2.listeFin.setValue(listeDateFreqFin)
+                model2.frequence.setValue(listeFreq)
                 dateFreqDeb.setText("")
                 dateFreqFin.setText("")
                 freq.setText("")
-                var textFreq =binding.textViewFreq
-                var text : String = textFreq.text.toString() + " du : "+debut[0]+"/"+debut[1] +" au "+fin[0]+"/"+fin[1] +"\n"
-                textFreq.setText(text)
+                model2.debut.setValue(null)
+                model2.fin.setValue(null)
+                affichageListeFrequence()
             }else{
                 AlertDialog.Builder(this).setMessage("Remplissez toutes les infos pour la fréquence d'arrosage")
                     .setCancelable(true).show()
@@ -137,6 +165,20 @@ class AjoutPlanteActivity : AppCompatActivity() {
             AlertDialog.Builder(this).setMessage("Vous ne pouvez ajouter que 3 frequences d'arrosage")
                 .setCancelable(true).show()
         }
+    }
+
+    fun affichageListeFrequence(){
+        var text = "Frequence (au max 3) :"
+
+        for(i in 0..model2.listeDebut.value!!.size-1){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                text += " du : "+ model2.listeDebut.value!![i].dayOfMonth+"/"+model2.listeDebut.value!![i].monthValue +" au "+model2.listeFin.value!![i].dayOfMonth+"/"+model2.listeFin.value!![i].monthValue +" tout les "+listeFreq[i]+" jours" +"\n"
+
+            } else {
+            }
+        }
+        binding.textViewFreq.setText(text)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -154,6 +196,7 @@ class AjoutPlanteActivity : AppCompatActivity() {
            val myFormat ="dd/MM/yyyy"
             val sdf = SimpleDateFormat(myFormat,Locale.FRANCE)
             date.text = sdf.format(c.time)
+            model2.debut.setValue(sdf.format(c.time))
         },annee,mois,jour)
         dpd.show()
     }
@@ -171,6 +214,7 @@ class AjoutPlanteActivity : AppCompatActivity() {
             val myFormat ="dd/MM/yyyy"
             val sdf = SimpleDateFormat(myFormat,Locale.FRANCE)
             date.text = sdf.format(c.time)
+            model2.fin.setValue(sdf.format(c.time))
         },annee,mois+1,jour)
         dpd.show()
     }

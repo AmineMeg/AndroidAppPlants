@@ -205,8 +205,8 @@ class EditPlanteActivity : AppCompatActivity() {
             }
             check = true
         }
-        finish();
-        startActivity(getIntent());
+        finish()
+        startActivity(getIntent())
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
